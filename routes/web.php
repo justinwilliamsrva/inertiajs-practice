@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return inertia('Home');
+});
+Route::get('/user', function () {
+    return inertia('User');
+});
+Route::get('/settings', function () {
+    return inertia('Settings');
 });
