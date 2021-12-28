@@ -7,8 +7,10 @@
     <div>
 
         <h1>Users</h1>
-        <h2>The time is {{ time }}</h2>
-        <Link preserve-scroll href="/user">Refresh</Link>
+        <ul>
+            <li v-for="user of users" :key="user.id" v-text="user.name"></li>
+        </ul>
+
     </div>
 </template>
 
@@ -21,7 +23,7 @@
 export default {
 
     props: {
-        time: String,
+        users: Array,
     },
 };
 </script>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ Route::get('/', function () {
 });
 Route::get('/user', function () {
 
-    return inertia('User',['time'=> now()->toTimeString()]);
+    return inertia('User',['users'=> User::select('id','name')->get()]);
 });
 Route::get('/settings', function () {
     return inertia('Settings');
