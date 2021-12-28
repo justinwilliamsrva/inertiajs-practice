@@ -1,10 +1,10 @@
 <template>
-    <Layout>
+    <div>
 
         <h1>Users</h1>
         <h2>The time is {{ time }}</h2>
         <Link preserve-scroll href="/user">Refresh</Link>
-    </Layout>
+    </div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ import Layout from "../Shared/Layout.vue";
 
 
 export default {
-    components: {  Layout },
+    layout: Layout,
     props: {
         time: String,
     },

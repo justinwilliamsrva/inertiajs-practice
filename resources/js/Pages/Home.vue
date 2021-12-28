@@ -1,9 +1,9 @@
 <template>
-    <Layout>
+   <div>
 
         <h1>Home</h1>
+   </div>
 
-    </Layout>
 </template>
 
 
@@ -14,6 +14,6 @@ import Layout from'../Shared/Layout.vue'
 
 
 export default {
-components:{ Layout}
+layout:Layout
 }
 </script>
