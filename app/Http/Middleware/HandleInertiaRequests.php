@@ -34,10 +34,15 @@ class HandleInertiaRequests extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+
+
     public function share(Request $request)
     {
+        $input = array("Neo", "Morpheus", "Trinity", "Cypher", "Tank");
+        $name = array_rand($input, 1);
         return array_merge(parent::share($request), [
-            //
+            'auth' => ['username' => $input[$name]]
         ]);
     }
 }
