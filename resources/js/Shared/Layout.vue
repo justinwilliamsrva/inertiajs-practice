@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>MY INERTIA PRACTICE APP</h1>
-        <h2>Welcome {{$page.props.auth.username}}</h2>
+        <h2>Welcome {{ username }}</h2>
 
         <Nav />
         <slot />
@@ -12,5 +12,11 @@
 import Nav from "./Nav.vue";
 export default {
     components: { Nav },
+
+    computed: {
+        username() {
+            return this.$page.props.auth.username;
+        },
+    },
 };
 </script>
