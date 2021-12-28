@@ -17,6 +17,7 @@ Route::get('/', function () {
     return inertia('Home');
 });
 Route::get('/user', function () {
+    
     return inertia('User');
 });
 Route::get('/settings', function () {
