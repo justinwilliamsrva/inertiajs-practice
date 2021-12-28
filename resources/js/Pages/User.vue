@@ -1,4 +1,9 @@
 <template>
+<Head>
+<title>Users</title>
+<meta type="description" content="Users information" head_key="description" >
+
+</Head>
     <div>
 
         <h1>Users</h1>

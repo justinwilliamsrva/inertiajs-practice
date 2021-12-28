@@ -1,4 +1,9 @@
 <template>
+<Head>
+<title>Welcome</title>
+<meta type="description" content="This is my Inertia App" head_key="description" >
+
+</Head>
     <div>
         <h1>MY INERTIA PRACTICE APP</h1>
         <h2>Welcome {{ username }}</h2>
