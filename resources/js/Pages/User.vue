@@ -1,33 +1,27 @@
 <template>
-    <div>
-        <Nav/>
+    <Layout>
+
         <h1>Users</h1>
         <h2>The time is {{ time }}</h2>
         <Link preserve-scroll href="/user">Refresh</Link>
-
-
-
-
-
-    </div>
+    </Layout>
 </template>
 
-
-
 <script>
-import Nav from '../Shared/Nav.vue'
-import {Link} from '@inertiajs/inertia-vue3'
+import Layout from "../Shared/Layout.vue";
+
+
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
-components:{Nav,Link},
- props: {
+    components: {  Link, Layout },
+    props: {
         time: String,
     },
-}
+};
 </script>
 <style scoped>
-h2{
-
-    margin-top: 100vh
+h2 {
+    margin-top: 100vh;
 }
 </style>
