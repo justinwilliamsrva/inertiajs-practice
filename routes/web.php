@@ -24,3 +24,7 @@ Route::get('/user', function () {
 Route::get('/settings', function () {
     return inertia('Settings');
 });
+Route::get('/datatable', function () {
+    return view('datatable',['users'=> User::select('id','name', 'email')->get()]);
+});
+
