@@ -1,9 +1,7 @@
 @extends('layouts.main') @section( 'styles' )
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
-/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/b-2.1.1/b-colvis-2.1.1/datatables.min.css"/>
+
+
 @endsection @section('title', "Users") @section('content')
 
 <div class="container">
@@ -14,45 +12,46 @@
                 <table class="table" id="datatable">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                         </tr>
                     </thead>
-                    <tbody>
-              
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/b-2.1.1/b-colvis-2.1.1/datatables.min.js"></script> -->
+
 @endsection @section("javascript")
-<script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"
-></script>
-<script
-    type="text/javascript"
-    charset="utf8"
-    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
-></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/b-2.1.1/b-colvis-2.1.1/datatables.min.js"></script>
+
 <script>
-        $(document).ready(function () {
-            $("#datatable").DataTable({
-    processing: true,
-    serverside: true,
-    ajax: {
-                        url: '{!! route('api.users') !!}',},
+    $(document).ready(function () {
+        var table = $("#datatable").DataTable({
 
-                        columns: [
-                    {data: 'name'},
-                    {data: 'email'},
+            serverside: true,
+            ajax: {
+                url: '{!! route('api.users') !!}',
+            },
 
-    ]
+            columns: [
+            { data: 'id' },
 
-            });
+                { data: 'name' },
+                { data: 'email' },
+
+            ], buttons: ['colvis'],
+            dom:"Blfrtip"
+
+
+
         });
+        table.buttons().container()
+        .insertBefore( '#datatable_filter' );
+    });
 </script>
 @endsection
