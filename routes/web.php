@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +27,5 @@ Route::get('/user', function () {
 Route::get('/settings', function () {
     return inertia('Settings');
 });
-Route::get('/datatable', function () {
-    return view('datatable',['users'=> User::select('id','name', 'email')->get()]);
-});
+Route::get('/datatable', UserController::class)->name('datatable');
 

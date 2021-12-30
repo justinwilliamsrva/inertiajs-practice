@@ -49,7 +49,12 @@
 ></script>
 <script>
     $(document).ready(function () {
-        $("#datatable").DataTable({});
+        $("#datatable").DataTable({
+processing: true,
+serverside: true
+
+
+        });
     });
 </script>
 @endsection

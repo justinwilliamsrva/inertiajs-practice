@@ -13,7 +13,7 @@
                 <Link
                     :class="{ active: $page.component === 'User' }"
                     class="links"
-                    href="/user?foo=bar"
+                    href="/user"
                     >Users</Link
                 >
             </li>
@@ -25,6 +25,14 @@
                     >Settings</Link
                 >
             </li>
+            <li>
+                <Link
+                    :class="{ active: $page.component === 'Settings' }"
+                    class="links"
+                    href="/datatable"
+                    >Datatables</Link
+                >
+            </li>
         </ul>
     </nav>
 </template>
@@ -32,7 +40,7 @@
 <script>
 
 export default {
-  
+
 };
 </script>
 <style scoped>
