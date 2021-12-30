@@ -37,8 +37,7 @@
 <script>
     $(document).ready(function () {
         var table = $("#datatable").DataTable({
-
-            serverside: true,
+            responsive: true,            serverside: true,
             ajax: {
                 url: '{!! route('api.users') !!}',
             },
