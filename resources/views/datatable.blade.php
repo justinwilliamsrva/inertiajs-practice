@@ -17,7 +17,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th></th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -64,20 +64,11 @@
             ], buttons: [
                 {
                     extend: 'pdfHtml5',
-                    messageTop: 'PDF created by PDFMake with Buttons for DataTables.'
+                   title: 'Users',
+                   messageTop: 'Here are the users you selected'
                 },
-                'copy', 'excel', 'pdf', 'print', 'csv',
-                {
-                    text: 'JSON',
-                    action: function (e, dt, button, config) {
-                        var data = dt.buttons.exportData();
+                'colvis','copy', 'excel',  'print', 'csv',
 
-                        $.fn.dataTable.fileSave(
-                            new Blob([JSON.stringify(data)]),
-                            'Export.json'
-                        );
-                    }
-                }
 
             ],
             dom: "Blfrtip"
