@@ -28,4 +28,7 @@ Route::get('/settings', function () {
     return inertia('Settings');
 });
 Route::get('/datatable', UserController::class)->name('datatable');
+Route::get('/api/users', function () {
+    return datatables(User::select('id', 'name', 'email'))->toJson();
+})->name("api.users");
 
