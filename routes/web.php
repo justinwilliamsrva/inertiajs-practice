@@ -22,13 +22,14 @@ Route::get('/', function () {
 });
 Route::get('/user', function () {
 
-    return inertia('User',['users'=> User::select('id','name')->get()]);
+    return inertia('User', ['users' => User::select('id', 'name')->get()]);
 });
 Route::get('/settings', function () {
     return inertia('Settings');
 });
 Route::get('/datatable', UserController::class)->name('datatable');
 Route::get('/api/users', function () {
-    return datatables(User::select('id', 'name', 'email'))->toJson();
+    return datatables(User::select('id', 'name', 'email'))->setRowClass(function ($user) {
+        return $user->id % 2 == 0 ? "table-success" : "table-warning";
+    })->toJson();
 })->name("api.users");
-

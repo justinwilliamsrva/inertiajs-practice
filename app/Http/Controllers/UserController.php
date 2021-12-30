@@ -13,11 +13,6 @@ class UserController extends Controller
 
 
 
-        $users = User::select('id', 'name', 'email')->get();
-
-
-
-
-        return view('datatable', compact("users"));
+        return view('datatable');
     }
 }

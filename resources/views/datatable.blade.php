@@ -1,6 +1,7 @@
 @extends('layouts.main') @section( 'styles' )
-<link rel="stylesheet" type="text/css"
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-colvis-2.1.1/b-html5-2.1.1/b-print-2.1.1/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/datatables.min.css"/>
 @endsection @section('title', "Users") @section('content')
 
 <div class="container">
@@ -14,6 +15,8 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th></th>
+
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -22,6 +25,7 @@
         </div>
     </div>
 </div>
+
 
 @endsection @section("javascript")
 
@@ -38,12 +42,22 @@
             ajax: {
                 url: '{!! route('api.users') !!}',
             },
+            columnDefs: [
+                    {  targets: -1,
+                    render: function(data,type,row){
+return'<a href="" class="mr-2 btn btn-xs btn-info ">Edit</a>'+'<a href="" class="ml-2 btn btn-xs btn-danger">Delete</a>';
 
+
+                    }},
+
+                ],
             columns: [
                 { data: 'id' },
 
                 { data: 'name' },
                 { data: 'email' },
+                { data: '' },
+
 
             ], buttons: [
             {
