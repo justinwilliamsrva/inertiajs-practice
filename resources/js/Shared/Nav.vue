@@ -1,40 +1,5 @@
 <template>
-    <!-- <nav>
-        <ul>
-            <li>
-                <Link
-                    :class="{ active: $page.component === 'Home' }"
-                    class="links"
-                    href="/"
-                    >Home</Link
-                >
-            </li>
-            <li>
-                <Link
-                    :class="{ active: $page.component === 'User' }"
-                    class="links"
-                    href="/user"
-                    >Users</Link
-                >
-            </li>
-            <li>
-                <Link
-                    :class="{ active: $page.component === 'Settings' }"
-                    class="links"
-                    href="/settings"
-                    >Settings</Link
-                >
-            </li>
-            <li>
-                <Link
-
-                    class="links"
-                    href="/datatable"
-                    >Datatables</Link
-                >
-            </li>
-        </ul>
-    </nav> -->
+   
 
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
         <div

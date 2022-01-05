@@ -19,6 +19,8 @@
                 id="name"
                 type="text"
             />
+            <div class="text-red-500 text-xs mt-1">{{errors.name}}</div>
+
         </div>
         <div class="mb-4">
             <label
@@ -33,6 +35,7 @@
                 id="email"
                 type="text"
             />
+            <div class="text-red-500 text-xs mt-1">{{errors.email}}</div>
         </div>
         <div class="mb-6">
             <label
@@ -47,6 +50,8 @@
                 id="password"
                 type="text"
             />
+            <div class="text-red-500 text-xs mt-1">{{errors.password}}</div>
+
         </div>
         <div class="flex items-center justify-between">
             <button
@@ -63,6 +68,10 @@
 export default {
     data() {
         return { form: {} };
+    },
+    props: {
+
+        errors: Object
     },
 
     watch: {
