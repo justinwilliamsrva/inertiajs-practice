@@ -32,6 +32,30 @@ Route::get('/user', function () {
         'filters' => Request::only(['search'])
     ]);
 });
+
+Route::post('/user', function (){
+//validate
+$attributes = Request::validate([
+'name'=>'required',
+'email'=>'required',
+'password'=>'required',
+
+
+]);
+//create user
+User::create($attributes);
+
+//redirect
+return redirect('/user');
+});
+
+
+Route::get('/user/create', function(){
+
+    return inertia('CreateUsers');
+});
+
+
 Route::get('/settings', function () {
     return inertia('Settings');
 });

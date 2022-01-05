@@ -9,9 +9,14 @@
     </Head>
     <div>
         <div class="justify-between flex my-5">
-            <h1 class="font-large">Users</h1>
+            <h1 class="text-3xl">Users</h1>
+              <Link as="button"
+                                            href="/user/create"
+                                            class="bg-sky-300 hover:bg-sky-500 font-bold py-2 px-4 rounded"
+                                            >Create New User</Link
+                                        >
             <input
-                class="border-2 rounded-lg"
+                class="border-2 rounded-lg px-2"
                 v-model="search"
                 placeholder="Search"
             />
@@ -42,7 +47,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-for="user in users.data" :key="user.id">
+                                <tr v-for="user in users.data" class="hover:bg-sky-300" :key="user.id">
                                     <td class="px-6 py-3 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div>
