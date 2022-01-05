@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <title>Userss</title>
+        <title>Users</title>
         <meta
             type="description"
             content="Users information"
@@ -8,7 +8,15 @@
         />a
     </Head>
     <div>
-        <h1>Users</h1>
+        <div class="justify-between flex my-5">
+            <h1 class="font-large">Users</h1>
+            <input
+                class="border-2 rounded-lg"
+                v-model="search"
+                placeholder="Search"
+            />
+        </div>
+
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -37,7 +45,6 @@
                                 <tr v-for="user in users.data" :key="user.id">
                                     <td class="px-6 py-3 whitespace-nowrap">
                                         <div class="flex items-center">
-
                                             <div>
                                                 <div
                                                     class="text-sm font-medium text-gray-900"
@@ -71,16 +78,25 @@
                 </div>
             </div>
         </div>
-<Pagination :links="users.links" class="mt-6"  />
+        <Pagination :links="users.links" class="mt-6" />
     </div>
 </template>
 <script>
-import Pagination from '../Shared/Pagination.vue'
+import Pagination from "../Shared/Pagination.vue";
 export default {
-    components:{Pagination},
+    components: { Pagination },
     props: {
         users: Object,
+        filters: Object
     },
+    data() {return {search: this.filters.search}},
+    watch:{
+        search(value){
+this.$inertia.get("/user",{search: value},{preserveState:true}
+)
+
+        }
+    }
 };
 </script>
 <style scoped>
