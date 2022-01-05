@@ -19279,6 +19279,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Shared_Pagination_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Shared/Pagination.vue */ "./resources/js/Shared/Pagination.vue");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -19295,12 +19298,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     search: function search(value) {
+      this.Checksearch(value);
+    }
+  },
+  methods: {
+    //https://stackoverflow.com/questions/45178621/how-to-correctly-use-vue-js-watch-with-lodash-debounce
+    Checksearch: lodash__WEBPACK_IMPORTED_MODULE_1___default().debounce(function (string) {
       this.$inertia.get("/user", {
-        search: value
+        search: string
       }, {
         preserveState: true
       });
-    }
+    }, 500)
   }
 });
 
@@ -19481,7 +19490,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'border-red-500': $props.errors.password
     }]),
     id: "password",
-    type: "text"
+    type: "password"
   }, null, 2
   /* CLASS */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors.password), 1

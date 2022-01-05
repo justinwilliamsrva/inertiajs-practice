@@ -10,11 +10,12 @@
     <div>
         <div class="justify-between flex my-5">
             <h1 class="text-3xl">Users</h1>
-              <Link as="button"
-                                            href="/user/create"
-                                            class="bg-sky-300 hover:bg-sky-500 font-bold py-2 px-4 rounded"
-                                            >Create New User</Link
-                                        >
+            <Link
+                as="button"
+                href="/user/create"
+                class="bg-sky-300 hover:bg-sky-500 font-bold py-2 px-4 rounded"
+                >Create New User</Link
+            >
             <input
                 class="border-2 rounded-lg px-2"
                 v-model="search"
@@ -47,7 +48,11 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-for="user in users.data" class="hover:bg-sky-300" :key="user.id">
+                                <tr
+                                    v-for="user in users.data"
+                                    class="hover:bg-sky-300"
+                                    :key="user.id"
+                                >
                                     <td class="px-6 py-3 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div>
@@ -88,20 +93,31 @@
 </template>
 <script>
 import Pagination from "../Shared/Pagination.vue";
+import _ from 'lodash';
 export default {
     components: { Pagination },
     props: {
         users: Object,
-        filters: Object
+        filters: Object,
     },
-    data() {return {search: this.filters.search}},
-    watch:{
-        search(value){
-this.$inertia.get("/user",{search: value},{preserveState:true}
-)
-
-        }
-    }
+    data() {
+        return { search: this.filters.search };
+    },
+    watch: {
+        search(value) {
+            this.Checksearch(value);
+        },
+    },
+    methods: {
+        //https://stackoverflow.com/questions/45178621/how-to-correctly-use-vue-js-watch-with-lodash-debounce
+        Checksearch: _.debounce(function (string) {
+            this.$inertia.get(
+                "/user",
+                { search: string },
+                { preserveState: true }
+            );
+        }, 500),
+    },
 };
 </script>
 <style scoped>
