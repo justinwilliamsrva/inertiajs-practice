@@ -18,6 +18,8 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="name"
                 type="text"
+
+                :class="{'border-red-500' : errors.name }"
             />
             <div class="text-red-500 text-xs mt-1">{{errors.name}}</div>
 
@@ -34,6 +36,7 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="text"
+                :class="{'border-red-500' : errors.email }"
             />
             <div class="text-red-500 text-xs mt-1">{{errors.email}}</div>
         </div>
@@ -49,6 +52,7 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="text"
+                :class="{'border-red-500' : errors.password}"
             />
             <div class="text-red-500 text-xs mt-1">{{errors.password}}</div>
 
