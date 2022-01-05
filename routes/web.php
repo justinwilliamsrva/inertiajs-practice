@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 Route::get('/user', function () {
 
-    return inertia('User', ['users' => User::select('id', 'name')->get()]);
+    return inertia('User', ['users' => User::paginate(10)]);
 });
 Route::get('/settings', function () {
     return inertia('Settings');

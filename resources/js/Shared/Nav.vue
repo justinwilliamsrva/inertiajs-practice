@@ -27,7 +27,7 @@
             </li>
             <li>
                 <Link
-                    :class="{ active: $page.component === 'Settings' }"
+                   
                     class="links"
                     href="/datatable"
                     >Datatables</Link
