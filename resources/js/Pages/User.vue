@@ -11,6 +11,7 @@
         <div class="justify-between flex my-5">
             <h1 class="text-3xl">Users</h1>
             <Link
+            v-if="can.createUser"
                 as="button"
                 href="/user/create"
                 class="bg-sky-300 hover:bg-sky-500 font-bold py-2 px-4 rounded"
@@ -99,6 +100,7 @@ export default {
     props: {
         users: Object,
         filters: Object,
+        can: Object,
     },
     data() {
         return { search: this.filters.search };

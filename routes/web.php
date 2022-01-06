@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +42,9 @@ Route::middleware(['auth'])->group(function () {
                 ->select("id", "name", "email")
                 ->paginate(10)
                 ->withQueryString(),
-            'filters' => Request::only(['search'])
+            'filters' => Request::only(['search']),
+            'can' => ['createUser'=> Auth::user()->can("create", User::class)]
+
         ]);
     });
 
@@ -66,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/create', function () {
 
         return inertia('CreateUsers');
-    });
+    })->middleware('can:create,App\Models\User');
 
 
     Route::get('/settings', function () {
