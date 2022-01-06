@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -17,51 +19,63 @@ use Illuminate\Foundation\Application;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Home');
+Route::get('/login',[LoginController::class,'create'])->name('login');
+Route::post('/login',[LoginController::class,'store']);
+Route::post('/logout',[LoginController::class,'destroy'])->name('logout')->middleware('auth');
+
+
+
+
+Route::middleware(['auth'])->group(function () {
+
+
+    Route::get('/', function () {
+        return inertia('Home');
+    })->name('home');
+    Route::get('/user', function () {
+
+        return inertia('User', [
+            'users' => User::query()
+                ->when(Request::input("search"), function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->select("id", "name", "email")
+                ->paginate(10)
+                ->withQueryString(),
+            'filters' => Request::only(['search'])
+        ]);
+    });
+
+    Route::post('/user', function () {
+        //validate
+        $attributes = Request::validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+
+
+        ]);
+        //create user
+        User::create($attributes);
+
+        //redirect
+        return redirect('/user');
+    });
+
+
+    Route::get('/user/create', function () {
+
+        return inertia('CreateUsers');
+    });
+
+
+    Route::get('/settings', function () {
+        return inertia('Settings');
+    });
+    Route::get('/datatable', UserController::class)->name('datatable');
+    Route::get('/api/users', function () {
+        return datatables(User::select('id', 'name', 'email'))->setRowClass(function ($user) {
+            return $user->id % 2 == 0 ? "table-success" : "table-warning";
+        })->toJson();
+    })->name("api.users");
 });
-Route::get('/user', function () {
-
-    return inertia('User', ['users' => User::query()
-        ->when(Request::input("search"), function ($query, $search) {
-            $query->where('name', 'like', "%{$search}%" );
-        })
-        ->select("id", "name", "email")
-        ->paginate(10)
-        ->withQueryString(),
-        'filters' => Request::only(['search'])
-    ]);
-});
-
-Route::post('/user', function (){
-//validate
-$attributes = Request::validate([
-'name'=>'required',
-'email'=>'required',
-'password'=>'required',
-
-
-]);
-//create user
-User::create($attributes);
-
-//redirect
-return redirect('/user');
-});
-
-
-Route::get('/user/create', function(){
-
-    return inertia('CreateUsers');
-});
-
-
-Route::get('/settings', function () {
-    return inertia('Settings');
-});
-Route::get('/datatable', UserController::class)->name('datatable');
-Route::get('/api/users', function () {
-    return datatables(User::select('id', 'name', 'email'))->setRowClass(function ($user) {
-        return $user->id % 2 == 0 ? "table-success" : "table-warning";
-    })->toJson();
-})->name("api.users");
